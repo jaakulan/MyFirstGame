@@ -1,6 +1,7 @@
 #include <Windows.h>
+#include "utils.cpp"
 
-bool running = true;
+global_variable bool running = true;
 
 struct Render_State {
 	int height, width;
@@ -9,7 +10,7 @@ struct Render_State {
 	BITMAPINFO bitmap_info;
 };
 
-Render_State render_state;
+global_variable Render_State render_state;
 
 #include "renderer.cpp"
 
@@ -79,7 +80,9 @@ int WinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance, LPSTR lpCmdLine, int n
 			DispatchMessage(&message);
 		}
 		clear_screen(0xff5500);
-		draw_rect(50, 50, 200, 500, 0xff0000);
+		draw_rect(0, 0, 1, 1, 0x00ff22);
+		draw_rect(30, 20, 5, 5, 0x00ff22);
+		draw_rect(-20, 20, 8, 3, 0x00ff22);
 		StretchDIBits(hdc, 0, 0, render_state.width, render_state.height, 0, 0, render_state.width, render_state.height, render_state.memory, &render_state.bitmap_info, DIB_RGB_COLORS, SRCCOPY);
 	}
 }
