@@ -1,7 +1,6 @@
 struct Button_State {
 	bool is_down;
 	bool changed;
-
 };
 
 enum {
